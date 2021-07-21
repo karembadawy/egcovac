@@ -2,12 +2,22 @@
 
 Registration System for COVID-19 Vaccine
 
-To start your Phoenix server:
+## Quick Guide for local development setup
 
-* Install dependencies with `mix deps.get`
-* Create and migrate your database with `mix ecto.setup`
-* Install Node.js dependencies with `npm install` inside the `assets` directory
-* Start Phoenix endpoint with `mix phx.server`
+### Upping your services which you composed with docker-compose
+
+  Go to the directory where docker-compose.yml is located, i.e. ($ cd $USER/workspace/egcovac)
+
+  ```sh
+
+  docker-compose build
+  docker-compose up
+  ```
+
+* If you git this error `[error] Postgrex.Protocol (#PID<0.3932.0>) failed to connect: ** (Postgrex.Error) FATAL 3D000 (invalid_catalog_name) database "myapp_dev" does not exist`
+* Stop container `CTRL+C`
+* Run `docker-compose run web mix ecto.create`
+* Then `docker-compose up`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
