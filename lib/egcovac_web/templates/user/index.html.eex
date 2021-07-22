@@ -1,0 +1,42 @@
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Nid</th>
+      <th>Birth date</th>
+      <th>Gender</th>
+      <th>City</th>
+      <th>Job</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Weight index</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.category %></td>
+      <td><%= user.name %></td>
+      <td><%= user.nid %></td>
+      <td><%= user.birth_date %></td>
+      <td><%= user.gender %></td>
+      <td><%= user.city %></td>
+      <td><%= user.job %></td>
+      <td><%= user.email %></td>
+      <td><%= user.phone %></td>
+      <td><%= user.weight_index %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.user_path(@conn, :show, user) %></span>
+        <span><%= link "Edit", to: Routes.user_path(@conn, :edit, user) %></span>
+        <span><%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

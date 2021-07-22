@@ -1,0 +1,47 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :category %>
+  <%= select f, :category, [:medical, :elders, :patients, :other] %>
+  <%= error_tag f, :category %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :nid %>
+  <%= text_input f, :nid %>
+  <%= error_tag f, :nid %>
+
+  <%= label f, :birth_date %>
+  <%= date_select f, :birth_date, year: [options: 1920..2020] %>
+  <%= error_tag f, :birth_date %>
+
+  <%= label f, :gender %>
+  <%= select f, :gender, [:male, :female] %>
+  <%= error_tag f, :gender %>
+
+  <%= label f, :city %>
+  <%= select f, :city, [:alexandria, :cairo, :giza, :helwan, :ismailia, :luxor, :new_valley, :north_sinai, :red_sea, :suez] %>
+  <%= error_tag f, :city %>
+
+  <%= label f, :job %>
+  <%= select f, :job, [:education, :engineering, :finance, :industry, :police, :tourism, :other] %>
+  <%= error_tag f, :job %>
+
+  <%= label f, :email %>
+  <%= text_input f, :email %>
+  <%= error_tag f, :email %>
+
+  <%= label f, :phone %>
+  <%= text_input f, :phone %>
+  <%= error_tag f, :phone %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
