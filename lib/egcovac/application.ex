@@ -14,7 +14,8 @@ defmodule Egcovac.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Egcovac.PubSub},
       # Start the Endpoint (http/https)
-      EgcovacWeb.Endpoint
+      EgcovacWeb.Endpoint,
+      Egcovac.SortUsers
       # Start a worker by calling: Egcovac.Worker.start_link(arg)
       # {Egcovac.Worker, arg}
     ]
