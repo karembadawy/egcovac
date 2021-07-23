@@ -7,6 +7,7 @@ defmodule Egcovac.Users do
   alias Egcovac.Repo
 
   alias Egcovac.Users.User
+  alias Egcovac.Requests.Request
 
   @doc """
   Returns the list of users.
@@ -35,7 +36,11 @@ defmodule Egcovac.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    User
+    |> Repo.get!(id)
+    |> Repo.preload(:request)
+  end
 
   @doc """
   Creates a user.

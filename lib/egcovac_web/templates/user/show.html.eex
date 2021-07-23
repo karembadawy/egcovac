@@ -1,4 +1,5 @@
-<h1>Show User</h1>
+<h1>Registration Number: <%= @user.request.registration_number %></h1>
+<h3>Please save this number so you can request status follow up</h3>
 
 <ul>
 
@@ -53,6 +54,3 @@
   </li>
 
 </ul>
-
-<span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>

@@ -14,6 +14,8 @@ defmodule Egcovac.Users.User do
     field :phone, :string
     field :weight_index, :float
 
+    has_one :request, Egcovac.Requests.Request
+
     timestamps()
   end
 

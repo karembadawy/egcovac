@@ -4,6 +4,8 @@ defmodule EgcovacWeb.UserController do
   alias Egcovac.Users
   alias Egcovac.Users.User
 
+  alias Egcovac.Requests
+
   def index(conn, _params) do
     users = Users.list_users()
     render(conn, "index.html", users: users)
@@ -17,6 +19,10 @@ defmodule EgcovacWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->
+        request = Requests.create_request(%{
+          user_id: user.id,
+          registration_number: "#{generate_registration_number}#{user.id}"
+        })
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))
@@ -62,19 +68,17 @@ defmodule EgcovacWeb.UserController do
   end
 
   def weight(id) do
-
     user = Users.get_user!(id)
     job_weight=get_job_weight("#{user.job}")
     age_weight=get_age_weight("#{user.birth_date}")
     category_weight=get_category_weight("#{user.category}")
     submit_date_weight=get_submit_date_weight(user.inserted_at)
     IO.puts "weight is #{job_weight}"
-    IO.puts "Job is #{user.job}" 
+    IO.puts "Job is #{user.job}"
     IO.puts "Age is #{age_weight}"
     IO.puts "Category weight is #{category_weight}"
     IO.puts "Submit date weight is #{submit_date_weight}"
-    (category_weight * 10000 ) + (age_weight * 1000) + ( job_weight * 100 ) - submit_date_weight 
-    
+    (category_weight * 10000 ) + (age_weight * 1000) + ( job_weight * 100 ) - submit_date_weight
   end
 
 
@@ -82,9 +86,9 @@ defmodule EgcovacWeb.UserController do
 
     cond do
      "#{job}" == "engineering" -> 2
-     "#{job}" == "education" -> 3 
+     "#{job}" == "education" -> 3
      "#{job}" == "finance" -> 1
-     "#{job}" == "industry" -> 1 
+     "#{job}" == "industry" -> 1
      "#{job}" == "police" -> 2
      "#{job}" == "tourism" -> 5
      "#{job}" == "other" -> 0
@@ -110,4 +114,7 @@ defmodule EgcovacWeb.UserController do
     trunc(Float.ceil( (DateTime.to_unix(DateTime.from_naive!(sub_date, "Etc/UTC")) / 36000000),0))
   end
 
+  def generate_registration_number do
+    s = for _ <- 1..10, into: "", do: <<Enum.random('0123456789')>>
+  end
 end

@@ -1,0 +1,17 @@
+<h1>Show Request</h1>
+
+<ul>
+
+  <li>
+    <strong>Registration number:</strong>
+    <%= @request.registration_number %>
+  </li>
+
+  <li>
+    <strong>Appointment:</strong>
+    <%= @request.appointment %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: Routes.request_path(@conn, :index) %></span>

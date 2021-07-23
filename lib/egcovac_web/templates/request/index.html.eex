@@ -1,0 +1,24 @@
+<h1>Listing Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Registration number</th>
+      <th>Appointment</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for request <- @requests do %>
+    <tr>
+      <td><%= request.registration_number %></td>
+      <td><%= request.appointment %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.request_path(@conn, :show, request) %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
