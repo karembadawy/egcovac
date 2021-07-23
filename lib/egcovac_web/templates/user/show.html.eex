@@ -48,9 +48,6 @@
     <%= @user.phone %>
   </li>
 
-  <li>
-    <strong>Weight index:</strong>
-    <%= @user.weight_index %>
-  </li>
-
 </ul>
+
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>

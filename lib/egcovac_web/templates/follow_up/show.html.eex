@@ -1,0 +1,22 @@
+<h1>Status Results</h1>
+
+<%= if !is_nil(@request) do %>
+  <ul>
+    <li>
+      <strong>Registration number:</strong>
+      <%= @request.registration_number %>
+    </li>
+    <li>
+      <strong>Appointment:</strong>
+      <%= if is_nil(@request.appointment) do %>
+        <span style="color: red">No date has been set yet</span>
+      <% else %>
+        <span style="color: green"><%= @request.appointment %></span>
+      <% end %>
+    </li>
+  </ul>
+<% else %>
+  <h3>Request does not exist<h3>
+<% end %>
+
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>

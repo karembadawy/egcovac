@@ -6,6 +6,7 @@ defmodule Egcovac.Requests do
   import Ecto.Query, warn: false
   alias Egcovac.Repo
 
+  alias Egcovac.Requests
   alias Egcovac.Requests.Request
 
   @doc """
@@ -35,6 +36,8 @@ defmodule Egcovac.Requests do
       ** (Ecto.NoResultsError)
 
   """
+  def get_request!(registration_number) when is_binary(registration_number), do: Repo.get_by(Request, registration_number: registration_number)
+
   def get_request!(id), do: Repo.get!(Request, id)
 
   @doc """

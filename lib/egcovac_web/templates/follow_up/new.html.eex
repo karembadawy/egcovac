@@ -1,0 +1,7 @@
+<h1>Request status follow up</h1>
+
+ <%= form_for @conn, Routes.follow_up_path(@conn, :index), [method: :get, class: "pull-right"], fn f -> %>
+    <%= label f, :registration_number %>
+    <%= search_input f, :registration_number %>
+    <%= submit "Inquiry" %>
+<% end %>

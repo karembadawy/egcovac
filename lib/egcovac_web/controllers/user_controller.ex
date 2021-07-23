@@ -17,6 +17,7 @@ defmodule EgcovacWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    user_params = weight(user_params)
     case Users.create_user(user_params) do
       {:ok, user} ->
         request = Requests.create_request(%{
@@ -24,7 +25,7 @@ defmodule EgcovacWeb.UserController do
           registration_number: "#{generate_registration_number}#{user.id}"
         })
         conn
-        |> put_flash(:info, "User created successfully.")
+        |> put_flash(:info, "Registration created successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -34,7 +35,6 @@ defmodule EgcovacWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
-    #weight(id)
     render(conn, "show.html", user: user)
   end
 
@@ -67,18 +67,18 @@ defmodule EgcovacWeb.UserController do
     |> redirect(to: Routes.user_path(conn, :index))
   end
 
-  def weight(id) do
-    user = Users.get_user!(id)
-    job_weight=get_job_weight("#{user.job}")
-    age_weight=get_age_weight("#{user.birth_date}")
-    category_weight=get_category_weight("#{user.category}")
-    submit_date_weight=get_submit_date_weight(user.inserted_at)
+  def weight(user_params) do
+    job_weight = get_job_weight(user_params["job"])
+    age_weight = get_age_weight(user_params["birth_date"])
+    category_weight = get_category_weight(user_params["category"])
+    submit_date_weight = get_submit_date_weight(DateTime.utc_now)
     IO.puts "weight is #{job_weight}"
-    IO.puts "Job is #{user.job}"
+    IO.puts "Job is #{user_params["job"]}"
     IO.puts "Age is #{age_weight}"
     IO.puts "Category weight is #{category_weight}"
     IO.puts "Submit date weight is #{submit_date_weight}"
-    (category_weight * 10000 ) + (age_weight * 1000) + ( job_weight * 100 ) - submit_date_weight
+    weight = (category_weight * 10000 ) + (age_weight * 1000) + ( job_weight * 100 ) - submit_date_weight
+    user_params |> Map.put("weight_index", weight)
   end
 
 

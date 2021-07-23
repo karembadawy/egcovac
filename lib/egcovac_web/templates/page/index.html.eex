@@ -2,5 +2,5 @@
   <h1><%= gettext "Welcome to %{name}!", name: "Egcovac" %></h1>
   <p>Registration System for COVID-19 Vaccine</p>
   <%= button "Register for vaccination", to: Routes.user_path(@conn, :new), class: "btn btn-primary", method: "get" %>
-  <button type="button" class="btn btn-secondary">Request status follow up</button>
+  <%= button "Request status follow up", to: Routes.follow_up_path(@conn, :index), class: "btn btn-secondary", method: "get" %>
 </section>

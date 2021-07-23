@@ -18,7 +18,7 @@
   <%= error_tag f, :nid %>
 
   <%= label f, :birth_date %>
-  <%= date_select f, :birth_date, year: [options: 1920..2020] %>
+  <%= date_input f, :birth_date %>
   <%= error_tag f, :birth_date %>
 
   <%= label f, :gender %>

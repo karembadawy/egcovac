@@ -19,6 +19,8 @@ defmodule EgcovacWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/requests", RequestController
+    get "/follow_up/:registration_number", FollowUpController, :index
+    get "/follow_up/", FollowUpController, :index
   end
 
   # Other scopes may use custom stacks.
