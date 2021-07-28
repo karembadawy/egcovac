@@ -42,6 +42,10 @@ defmodule Egcovac.Users do
     |> Repo.preload(:request)
   end
 
+  def list_user_appointments do
+    Repo.all(from u in User, preload: [:request])
+  end
+
   @doc """
   Creates a user.
 
