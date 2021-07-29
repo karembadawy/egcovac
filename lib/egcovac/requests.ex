@@ -80,6 +80,12 @@ defmodule Egcovac.Requests do
     |> Repo.update()
   end
 
+  def update_appointment(val, registration_number) do
+    Repo.get_by(Request, registration_number: registration_number)
+    |> Ecto.Changeset.change(%{appointment: val})
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a request.
 

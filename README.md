@@ -9,7 +9,6 @@ Registration System for COVID-19 Vaccine
   Go to the directory where docker-compose.yml is located, i.e. ($ cd $USER/workspace/egcovac)
 
   ```sh
-
   docker-compose build
   docker-compose up
   ```
@@ -18,6 +17,18 @@ Registration System for COVID-19 Vaccine
 * Stop container `CTRL+C`
 * Run `docker-compose run web mix ecto.create`
 * Then `docker-compose up`
+
+### To enter to docker container
+
+  ```sh
+  docker exec -it egcovac_web_1 /bin/bash
+  ```
+
+### To use Elixir console in the docker container run
+
+  ```sh
+  iex -S mix
+  ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 

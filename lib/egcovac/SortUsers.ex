@@ -18,9 +18,13 @@ defmodule Egcovac.SortUsers do
 
   defp get_price() do
     requests = Requests.list_user_appointments
-
     requests = Enum.sort_by(requests, fn x -> x.user.weight_index end, :desc)
 
-    Enum.each(requests, fn r -> IO.puts r.user.weight_index end)
+    dates = [
+      DateTime.utc_now() |> DateTime.add(36000, :second),
+      DateTime.utc_now() |> DateTime.add(39600, :second),
+      DateTime.utc_now() |> DateTime.add(43200, :second)
+    ]
+    Enum.each(requests, fn r -> Requests.update_appointment(Enum.at(dates, 0), r.registration_number) end)
   end
 end
