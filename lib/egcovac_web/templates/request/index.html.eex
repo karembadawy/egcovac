@@ -14,10 +14,6 @@
     <tr>
       <td><%= request.registration_number %></td>
       <td><%= request.appointment %></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.request_path(@conn, :show, request) %></span>
-      </td>
     </tr>
 <% end %>
   </tbody>

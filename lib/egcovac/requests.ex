@@ -40,6 +40,10 @@ defmodule Egcovac.Requests do
 
   def get_request!(id), do: Repo.get!(Request, id)
 
+  def list_user_appointments do
+    Repo.all(from r in Request, where: is_nil(r.appointment), preload: [:user])
+  end
+
   @doc """
   Creates a request.
 

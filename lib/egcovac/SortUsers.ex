@@ -1,8 +1,7 @@
 defmodule Egcovac.SortUsers do
   use Task
 
-  alias Egcovac.Users
-  alias Egcovac.Users.User
+  alias Egcovac.Requests
 
   def start_link(_arg) do
     Task.start_link(&poll/0)
@@ -18,7 +17,7 @@ defmodule Egcovac.SortUsers do
   end
 
   defp get_price() do
-    users = Users.list_user_appointments
-    Enum.each(users, fn u -> IO.puts u.request.appointment end)
+    requests = Requests.list_user_appointments
+    Enum.each(requests, fn r -> IO.puts r.appointment end)
   end
 end
