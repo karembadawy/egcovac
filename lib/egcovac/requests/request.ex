@@ -3,7 +3,7 @@ defmodule Egcovac.Requests.Request do
   import Ecto.Changeset
 
   schema "requests" do
-    field :appointment, :date
+    field :appointment, :utc_datetime_usec
     field :registration_number, :string
 
     belongs_to :user, Egcovac.Users.User

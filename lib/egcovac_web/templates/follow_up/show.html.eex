@@ -11,7 +11,7 @@
       <%= if is_nil(@request.appointment) do %>
         <span style="color: red">No date has been set yet</span>
       <% else %>
-        <span style="color: green"><%= @request.appointment %></span>
+        <span style="color: green"><%= "#{@request.appointment.day}-#{@request.appointment.month}-#{@request.appointment.year} #{@request.appointment.hour}:#{@request.appointment.minute}" %></span>
       <% end %>
     </li>
   </ul>
