@@ -18,6 +18,9 @@ defmodule Egcovac.SortUsers do
 
   defp get_price() do
     requests = Requests.list_user_appointments
-    Enum.each(requests, fn r -> IO.puts r.appointment end)
+
+    requests = Enum.sort_by(requests, fn x -> x.user.weight_index end, :desc)
+
+    Enum.each(requests, fn r -> IO.puts r.user.weight_index end)
   end
 end
