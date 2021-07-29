@@ -13,7 +13,7 @@
 <%= for request <- @requests do %>
     <tr>
       <td><%= request.registration_number %></td>
-      <td><%= request.appointment %></td>
+      <td><%= "#{request.appointment.year}-#{request.appointment.month}-#{request.appointment.day} #{request.appointment.hour}:#{request.appointment.minute}" %></td>
     </tr>
 <% end %>
   </tbody>
