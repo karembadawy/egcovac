@@ -15,12 +15,12 @@
           <nav role="navigation">
             <ul>
               <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-                <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+                <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), style: "color: white" %></li>
               <% end %>
             </ul>
           </nav>
           <a href="/" class="phx-logo">
-            <img src="<%= Routes.static_path(@conn, "/images/logo-en-black.png") %>" alt="Phoenix Framework Logo"/>
+            <img style="height: 75px;" src="<%= Routes.static_path(@conn, "/images/logo-en.png") %>" alt="Phoenix Framework Logo"/>
           </a>
         </section>
       </header>

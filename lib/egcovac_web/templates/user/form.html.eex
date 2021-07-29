@@ -42,6 +42,6 @@
   <%= error_tag f, :phone %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", style: "margin-bottom: 60px;" %>
   </div>
 <% end %>
